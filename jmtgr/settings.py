@@ -76,10 +76,20 @@ WSGI_APPLICATION = 'jmtgr.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+     'ENGINE': 'django.db.backends.mysql',
+     'NAME': 'jmtgrjmtgr',  # DB명
+     'USER': 'jmtgr',  # 데이터베이스 계정
+     'PASSWORD': 'jmtgrjmtgr',   # 계정 비밀번호
+     'HOST': 'jmtgrjmtgr.cdbacrn5f9rz.us-east-1.rds.amazonaws.com',  # 데이테베이스 IP
+     'PORT': '3306',  # 데이터베이스 port
+     }
+
 }
 
 
