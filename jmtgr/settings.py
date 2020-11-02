@@ -83,10 +83,10 @@ DATABASES = {
 
     'default': {
      'ENGINE': 'django.db.backends.mysql',
-     'NAME': 'jmtgrjmtgr',  # DB명
-     'USER': 'jmtgr',  # 데이터베이스 계정
-     'PASSWORD': 'jmtgrjmtgr',   # 계정 비밀번호
-     'HOST': 'jmtgrjmtgr.cdbacrn5f9rz.us-east-1.rds.amazonaws.com',  # 데이테베이스 IP
+     'NAME': 'jmtgrdb',  # DB명
+     'USER': 'multicampusjmtgr',  # 데이터베이스 계정
+     'PASSWORD': 'JMtgr1117',   # 계정 비밀번호
+     'HOST': 'jmtgr.cij2xpo0vglc.us-east-1.rds.amazonaws.com',  # 데이테베이스 IP
      'PORT': '3306',  # 데이터베이스 port
      }
 
