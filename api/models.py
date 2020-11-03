@@ -108,3 +108,4 @@ class CertSchedule(models.Model):
 
     def __str__(self):
         return self.cert_id
+        
