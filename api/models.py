@@ -3,23 +3,10 @@ from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser, User
 from datetime import datetime
+from user.models import User
 
 
 
-# 사용자 테이블
-class User(models.Model):
-    id_token = models.CharField(primary_key=True, max_length=500) #PK(사용자PK / Auth에서 제공하는 id)
-    secret_key = models.CharField(max_length=500) #비밀키(이걸 저장하는게 맞는진 잘 모르겠음...)
-    interest = models.CharField(max_length=50) #관심영역(회원가입 시 선택)
-    name = models.CharField(max_length=50) #사용자 이름
-    email = models.CharField(max_length=50) #사용자 이메일
-    phone_number = models.CharField(max_length=50) #핸드폰 번호
-
-    class Meta:
-        db_table = 'USER'
-    
-    def __str__(self):
-        return self.name
 
 # 자격증 카테고리 예) 정보통신
 class Category(models.Model):
@@ -106,5 +93,5 @@ class CertSchedule(models.Model):
         # 장고에서는 compound PK 지정이 안되서 pk는 자동생성되는 인덱스 값을 만들고 유니크한 필드값을 지정
         unique_together = ['cert_id', 'test_round', 'test_type'] 
 
-    def __str__(self):
-        return self.cert_id
+        def __str__(self):
+            return self.cert_id
