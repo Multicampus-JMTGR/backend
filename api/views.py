@@ -3,8 +3,8 @@ from rest_framework import viewsets, permissions, generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
-from .models import Certificate
-from .serializers import CertificateSerializer
+from .models import Certificate, User
+from .serializers import CertificateSerializer, UserSerializer
 
 # Create your views here.
 @api_view(['GET'])
@@ -25,3 +25,12 @@ class ListCertificates(generics.ListCreateAPIView):
 class DetailCertificates(generics.RetrieveUpdateDestroyAPIView):
     queryset = Certificate.objects.all()
     serializer_class = CertificateSerializer
+
+# User Viewset
+class ListUser(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class DetailUser(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
