@@ -17,5 +17,5 @@ pytz==2020.1
 sqlparse==0.4.1
 traitlets==5.0.5
 wcwidth==0.2.5
-django-cors-header==3.5.0
+django-cors-headers==3.5.0
 djangorestframework-jwt==1.11.0
