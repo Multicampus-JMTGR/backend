@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import Certificate, User
+from .models import Certificate
 
 class CertificateSerializer(serializers.ModelSerializer):
     class Meta:

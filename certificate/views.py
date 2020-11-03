@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from .models import Certificate, User
-from .serializers import CertificateSerializer, UserSerializer
+from .serializers import CertificateSerializer
 
 # Create your views here.
 @api_view(['GET'])
@@ -12,7 +12,7 @@ def HelloAPI(request):
     return Response("hello world!")
 
 
-from api.models import Certificate
+from .models import Certificate
 from .serializers import CertificateSerializer
 
 from rest_framework import viewsets, permissions

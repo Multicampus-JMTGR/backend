@@ -5,6 +5,7 @@ from . import views
 # from .api import CertificateViewSet
 
 urlpatterns = [
-    path('certiciate', views.ListCertificates.as_view()),
-    path('certiciate/<int:pk>', views.DetailCertificates.as_view()),
+    # Certificates
+    path('certificate/', views.ListCertificates.as_view()),
+    path('certificate/<int:pk>', views.DetailCertificates.as_view()),
 ]
