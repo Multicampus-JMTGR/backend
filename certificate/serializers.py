@@ -12,7 +12,3 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ('cat_id', 'name', 'certificates')
 
-class StudyPlanSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = StudyPlan
-        fields = '__all__'

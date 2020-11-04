@@ -19,3 +19,18 @@ class User(models.Model):
     
     def __str__(self):
         return self.name
+
+# 스터디 플랜
+# ondelete 설명 : https://lee-seul.github.io/django/backend/2018/01/28/django-model-on-delete.html
+class StudyPlan(models.Model):
+    content_id = models.AutoField(primary_key=True, default=1) #PK(스터디플랜PK)
+    id_token = models.ForeignKey(User, on_delete=models.CASCADE) #FK(사용자PK)
+    cert_id = models.ForeignKey(Certificate, on_delete=models.CASCADE) #FK(자격증PK)
+    date = models.DateField(blank=True, null=True) #달력에서 날짜 부분
+    contents = models.CharField(max_length=1000) #todolist작성내용
+
+    class Meta:
+        db_table = "STUDY_PLAN"
+
+    def __str__(self):
+        return self.contents

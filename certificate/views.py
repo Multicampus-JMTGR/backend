@@ -20,7 +20,7 @@ from rest_framework import viewsets, permissions
 # Certificate Viewset
 class ListCertificates(generics.ListCreateAPIView):
     queryset = Certificate.objects.all()
-    serializer_class = CertificateSerializer(queryset, many=True)
+    serializer_class = CertificateSerializer
 
 class DetailCertificates(generics.RetrieveUpdateDestroyAPIView):
     queryset = Certificate.objects.all()
@@ -30,7 +30,6 @@ class DetailCertificates(generics.RetrieveUpdateDestroyAPIView):
 class ListCategories(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-
 
 
 class DetailCategories(generics.RetrieveUpdateDestroyAPIView):
