@@ -1,4 +1,5 @@
 from django.db import models
+from certificate.models import Certificate, Category
 
 # 사용자 테이블
 class User(models.Model):
@@ -8,6 +9,10 @@ class User(models.Model):
     name = models.CharField(max_length=50) #사용자 이름
     email = models.CharField(max_length=50) #사용자 이메일
     phone_number = models.CharField(max_length=50) #핸드폰 번호
+    # 좋아요 Many to Many 설정 방법
+    cat_likes = models.ManyToManyField(Category, blank=True, db_constraint=True)
+    cert_likes = models.ManyToManyField(Certificate, blank=True, db_constraint=True)
+
 
     class Meta:
         db_table = 'USER'
