@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import viewsets, permissions, generics, status
+from rest_framework import viewsets, permissions, generics, status, filters
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
@@ -27,6 +27,7 @@ class DetailCertificates(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CertificateSerializer(queryset, many=True)
 
 
+# Categories Viewset
 class ListCategories(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
@@ -47,4 +48,12 @@ def CertifiacetFilterSearchAPI(request):
         serializer = CertificateSerializer(queryset, many=True)
         return Response(serializer.data)
 
-
+# 날짜가 임박한 자격증 정렬 / 표시하기 - 민지
+class CertificateFilter(generics.ListCreateAPIView):
+    serializer_class = CertificateSerializer
+    
+    def get_approaching_certificates(self):
+        queryset = Certificate.objects.all()
+        filter_backends = [filters.OrderingFilter]
+        ordering_fields = ['reg_end_dday']
+        return queryset

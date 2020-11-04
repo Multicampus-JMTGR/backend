@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser, User
 from datetime import datetime
@@ -48,6 +49,25 @@ class CertSchedule(models.Model):
         db_table = "CERT_SCHEDULE"
         # 장고에서는 compound PK 지정이 안되서 pk는 자동생성되는 인덱스 값을 만들고 유니크한 필드값을 지정
         unique_together = ['cert_id', 'test_round', 'test_type'] 
+
+    @property
+    def reg_start_dday(self):
+        return datetime.now() - self.reg_start_date
+    
+    def reg_end_dday(self):
+        return datetime.now() - self.reg_end_date
+    
+    def test_start_dday(self):
+        return datetime.now() - self.test_start_date
+    
+    def test_end_dday(self):
+        return datetime.now() - self.test_end_date
+    
+    def result_dday_1(self):
+        return datetime.now() - self.result_date_1
+    
+    def result_dday_2(self):
+        return datetime.now() - self.result_date_2
 
     def __str__(self):
         return self.cert_id

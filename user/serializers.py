@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from .models import User
-from certificate.models import Certificate, Category, StudyPlan
+from .models import User, StudyPlan
+from certificate.models import Certificate, Category
 from certificate.serializers import CertificateSerializer, CategorySerializer
 
 class StudyPlanSerializer(serializers.ModelSerializer):
