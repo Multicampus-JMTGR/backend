@@ -44,10 +44,13 @@ INSTALLED_APPS = [
     'corsheaders', #CORS추가
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True #CORS추가
+CORS_ALLOW_CREDENTIALS = True #CORS추가
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        #'rest_framework.permissions.AllowAny',
-        'rest_framework.permissions.IsAuthenticated',#추가
+        'rest_framework.permissions.AllowAny',
+        #'rest_framework.permissions.IsAuthenticated',#추가
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
@@ -64,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware', #CORS추가
 ]
 
 ROOT_URLCONF = 'jmtgr.urls'

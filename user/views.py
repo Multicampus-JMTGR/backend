@@ -12,17 +12,29 @@ def HelloAPI(request):
     return Response("hello world!")
 
 
-from api.models import User
-from .serializers import UserSerializer
+#User Insert/Select List
+@api_view(['GET','POST'])
+def UserAPIList(request):
+    if request.method == 'GET':
+        queryset = User.objects.all()
+        serializer = UserSerializer(queryset, many=True)
+        return Response(serializer.data)
 
-from rest_framework import viewsets, permissions
+    elif request.method == 'POST':
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# User Viewset
-class ListUser(generics.ListCreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+# User Select One
+@api_view(['GET'])
+def UserAPIDetail(request, pk):
+    try:
+        queryset = User.objects.get(pk=pk)
+    except User.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
-class DetailUser(generics.RetrieveUpdateDestroyAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
+    if request.method == 'GET':
+        serializer = UserSerializer(queryset)
+        return Response(serializer.data)
