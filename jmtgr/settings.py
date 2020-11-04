@@ -44,13 +44,18 @@ INSTALLED_APPS = [
     'corsheaders', #CORS추가
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True #CORS추가
+CORS_ALLOW_CREDENTIALS = True #CORS추가
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
-        # 'rest_framework.permissions.IsAuthenticated',
+        #'rest_framework.permissions.IsAuthenticated',#추가
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',#추가
+        'rest_framework.authentication.BasicAuthentication',#추가
     ),
 }
 
@@ -62,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware', #CORS추가
 ]
 
 ROOT_URLCONF = 'jmtgr.urls'
@@ -104,6 +110,27 @@ DATABASES = {
      }
 
 }
+
+
+# JWT
+# https://github.com/meh9184/django-react-todo-manager
+# JWT_SECRET_KEY : JWT_SECRET_KEY는 Django 프로젝트의 SECRET_KEY로 사용
+# JWT_ALGORITHM : 암호화 함수는 HS256으로 설정
+# JWT_VERIFY_EXPIRATION : JWT 검증시, 만료 기간 확인
+# JWT_ALLOW_REFRESH : JWT 갱신 허용
+# JWT_EXPIRATION_DELTA : Access Token의 만료 시간은 10분으로 설정. 10분 지나면 토큰 만료되고, 리소스 접근시 자동 로그아웃
+# JWT_REFRESH_EXPIRATION_DELTA : Refresh Token의 만료 시간은 1시간으로 설정. Access Token이 만료되기 전에 계속해서 갱신 가능하지만 1시간 지나면 더이상 갱신 불가
+# JWT_RESPONSE_PAYLOAD_HANDLER : JWT Paylod 핸들링 할때 미들웨어 커스텀 핸들러 my_jwt_response_handler 거치도록 설정
+
+# JWT_AUTH = {
+#    'JWT_SECRET_KEY': SECRET_KEY,
+#    'JWT_ALGORITHM': 'HS256',
+#    'JWT_VERIFY_EXPIRATION' : True,
+#    'JWT_ALLOW_REFRESH': True,
+#    'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=10),
+#    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(hours=1),
+#    'JWT_RESPONSE_PAYLOAD_HANDLER': 'api.custom_responses.my_jwt_response_handler'
+# }
 
 
 # Password validation
