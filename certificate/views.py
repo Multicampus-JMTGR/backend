@@ -39,15 +39,13 @@ class DetailCategories(generics.RetrieveUpdateDestroyAPIView):
 
 
 # 자격증 필터 / 검색 - 수녕
+# http://127.0.0.1:8000/certificate/CertificatesFilter/?keyword=정보처리기사 이런식으로 요청해야함?!
 @api_view(['GET'])
 def CertifiacetFilterSearchAPI(request):
-    #value = request.GET.get('keyword')
+    value = request.GET.get('keyword')
     if request.method == 'GET':
-        print('----------------------GET들어옴----------------------')
-        queryset = Certificate.objects.all()#.select_related('Category__cat_id')
-        print('queryset : ', queryset)
-        serializer = CategorySerializer(queryset, many=True)
-        print('serializer : ',serializer)
+        queryset = Certificate.objects.all().filter(name=value).select_related('Category__cat_id')
+        serializer = CertificateSerializer(queryset, many=True)
         return Response(serializer.data)
 
 
