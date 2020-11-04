@@ -12,4 +12,7 @@ urlpatterns = [
      # Category
     path('category/', views.ListCategories.as_view()),
     path('category/<int:pk>', views.DetailCategories.as_view()),
+    
+    # Certificates Filter - snchoi
+    path('certificate/CertificatesFilter/', views.CertifiacetFilterSearchAPI),
 ]

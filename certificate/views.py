@@ -36,3 +36,18 @@ class ListCategories(generics.ListCreateAPIView):
 class DetailCategories(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer(queryset, many=True)
+
+
+# 자격증 필터 / 검색 - 수녕
+@api_view(['GET'])
+def CertifiacetFilterSearchAPI(request):
+    #value = request.GET.get('keyword')
+    if request.method == 'GET':
+        print('----------------------GET들어옴----------------------')
+        queryset = Certificate.objects.all()#.select_related('Category__cat_id')
+        print('queryset : ', queryset)
+        serializer = CategorySerializer(queryset, many=True)
+        print('serializer : ',serializer)
+        return Response(serializer.data)
+
+
