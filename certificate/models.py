@@ -1,7 +1,8 @@
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
-from django.contrib.auth.models import AbstractUser, User
+from django.contrib.auth.models import AbstractUser
+from user.models import User
 from datetime import datetime
 
 
@@ -16,6 +17,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+# 자격증 예) 정보처리기사
 class Certificate(models.Model):
     cert_id = models.IntegerField(primary_key=True) #PK(자격증PK)
     cat_id = models.ForeignKey(Category, related_name="certificates", on_delete=models.CASCADE) #FK(카테고리PK)
@@ -34,7 +36,7 @@ class Certificate(models.Model):
 # ondelete 설명 : https://lee-seul.github.io/django/backend/2018/01/28/django-model-on-delete.html
 class StudyPlan(models.Model):
     content_id = models.AutoField(primary_key=True, default=1) #PK(스터디플랜PK)
-    id_token = models.ForeignKey(User, on_delete=models.CASCADE) #FK(사용자PK)
+    eamil = models.ForeignKey(User, on_delete=models.CASCADE) #FK(사용자PK) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     cert_id = models.ForeignKey(Certificate, on_delete=models.CASCADE) #FK(자격증PK)
     date = models.DateField(blank=True, null=True) #달력에서 날짜 부분
     contents = models.CharField(max_length=1000) #todolist작성내용
@@ -64,8 +66,6 @@ class CertSchedule(models.Model):
         # 장고에서는 compound PK 지정이 안되서 pk는 자동생성되는 인덱스 값을 만들고 유니크한 필드값을 지정
         unique_together = ['cert_id', 'test_round', 'test_type'] 
 
-    def __str__(self):
-        return self.cert_id
 
 # 관심 자격증 표시 여부
 # ondelete 설명 : https://lee-seul.github.io/django/backend/2018/01/28/django-model-on-delete.html
