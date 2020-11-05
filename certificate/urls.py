@@ -20,6 +20,11 @@ urlpatterns = [
     path('certificate/CertificatesFilter/', views.CertifiacetFilterSearchAPI),
 
     # Certificate Ordering Filter - minji
-    path('certificate/OrderingFilter', views.CertificateOrderingFilter.as_view())
+    path('certificate/OrderingFilter/', views.CertificateOrderingFilter.as_view()),
+
+    # CertificateRecommand By Examinee - snchoi
+    path('certificate/CertRecomByExaminee/', views.CertificateRecommendByExaminee.as_view()),
+
+    # CertificateRecommand
 
 ]

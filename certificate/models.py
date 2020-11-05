@@ -34,6 +34,7 @@ class Certificate(models.Model):
         return self.name
 
 
+
 # 자격증 접수일정 정보
 class CertSchedule(models.Model):
     # schedule_id = models.AutoField()
@@ -71,7 +72,7 @@ class CertSchedule(models.Model):
     def result_dday_2(self):
         return datetime.now() - self.result_date_2
 
-    def __str__(self):
+    def __int_(self):
         return self.cert_id
 
 # 관심 자격증 표시 여부

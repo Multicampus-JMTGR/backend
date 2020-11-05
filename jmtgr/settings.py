@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'user',
     'certificate',
     'corsheaders', #CORS추가
+    'django_filters', #django_filters 추가
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True #CORS추가
