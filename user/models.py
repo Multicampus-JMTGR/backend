@@ -6,7 +6,7 @@ class User(models.Model):
     #id_token = models.CharField(primary_key=True, max_length=500) #PK(사용자PK / Auth에서 제공하는 id)
     #secret_key = models.CharField(max_length=500) #비밀키(이걸 저장하는게 맞는진 잘 모르겠음...)
     email = models.CharField(primary_key=True, max_length=50) #사용자 이메일
-    interest = models.CharField(max_length=50) #관심영역(회원가입 시 선택)
+    interest = models.CharField(max_length=50) #관심영역(회원가입 시 선택 / 카테고리 명)
     name = models.CharField(max_length=50) #사용자 이름
     phone_number = models.CharField(max_length=50) #핸드폰 번호
     # 좋아요 Many to Many 설정 방법
