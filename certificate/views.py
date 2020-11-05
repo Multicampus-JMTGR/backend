@@ -3,19 +3,24 @@ from rest_framework import viewsets, permissions, generics, status, filters
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
-from .models import Certificate, Category
-from .serializers import CertificateSerializer, CategorySerializer
+from .models import Certificate, Category, CertSchedule
+from .serializers import CertificateSerializer, CategorySerializer, CertScheduleSerializer
 
 # Create your views here.
 @api_view(['GET'])
 def HelloAPI(request):
     return Response("hello world!")
 
-
-from .models import Certificate
-from .serializers import CertificateSerializer
-
 from rest_framework import viewsets, permissions
+
+# Schedule Viewset
+class ListCertSchedule(generics.ListCreateAPIView):
+    queryset = CertSchedule.objects.all()
+    serializer_class = CertScheduleSerializer
+
+class DetailCertSchedule(generics.RetrieveUpdateDestroyAPIView):
+    queryset = CertSchedule.objects.all()
+    serializer_class = CertScheduleSerializer
 
 # Certificate Viewset
 class ListCertificates(generics.ListCreateAPIView):
@@ -24,7 +29,7 @@ class ListCertificates(generics.ListCreateAPIView):
 
 class DetailCertificates(generics.RetrieveUpdateDestroyAPIView):
     queryset = Certificate.objects.all()
-    serializer_class = CertificateSerializer(queryset, many=True)
+    serializer_class = CertificateSerializer
 
 
 # Categories Viewset
@@ -35,7 +40,7 @@ class ListCategories(generics.ListCreateAPIView):
 
 class DetailCategories(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
-    serializer_class = CategorySerializer(queryset, many=True)
+    serializer_class = CategorySerializer
 
 
 # 자격증 필터 / 검색 - 수녕
@@ -57,3 +62,4 @@ class CertificateOrderingFilter(generics.ListAPIView):
     serializer_class = CertificateSerializer
     filter_backends = [ filters.OrderingFilter ]
     ordering_fields = ['reg_end_dday']
+
