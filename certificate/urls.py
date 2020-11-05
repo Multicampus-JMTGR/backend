@@ -25,6 +25,6 @@ urlpatterns = [
     # CertificateRecommand By Examinee - snchoi
     path('certificate/CertRecomByExaminee/', views.CertificateRecommendByExaminee.as_view()),
 
-    # CertificateRecommand
-
+    # CertificateRecommand By Interest
+    path('certificate/CertRecomByInterest/', views.CertificateRecommendByInterest.as_view()),
 ]
