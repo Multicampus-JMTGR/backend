@@ -13,4 +13,8 @@ urlpatterns = [
     
     # Certificates Filter - snchoi
     path('certificate/CertificatesFilter/', views.CertifiacetFilterSearchAPI),
+
+    # Certificate Ordering Filter - minji
+    path('certificate/OrderingFilter', views.CertificateOrderingFilter.as_view())
+
 ]

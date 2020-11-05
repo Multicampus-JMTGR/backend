@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.base_user import BaseUserManager
-from django.contrib.auth.models import AbstractUser, User
+from django.contrib.auth.models import AbstractUser
 from datetime import datetime
 
 
@@ -17,6 +17,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+# 자격증 예) 정보처리기사
 class Certificate(models.Model):
     cert_id = models.IntegerField(primary_key=True) #PK(자격증PK)
     cat_id = models.ForeignKey(Category, related_name="certificates", on_delete=models.CASCADE) #FK(카테고리PK)
@@ -24,6 +25,7 @@ class Certificate(models.Model):
     department = models.CharField(max_length=100) #시행기관
     pass_percent = models.FloatField(max_length=50) #합격률
     cost = models.CharField(max_length=500) #응시료
+    examinee = models.IntegerField(default=0) #응시자 수
 
     class Meta:
         db_table = "CERTIFICATE"

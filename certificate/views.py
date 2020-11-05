@@ -3,7 +3,7 @@ from rest_framework import viewsets, permissions, generics, status, filters
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
-from .models import Certificate, User, Category
+from .models import Certificate, Category
 from .serializers import CertificateSerializer, CategorySerializer
 
 # Create your views here.
@@ -48,12 +48,12 @@ def CertifiacetFilterSearchAPI(request):
         serializer = CertificateSerializer(queryset, many=True)
         return Response(serializer.data)
 
+
 # 날짜가 임박한 자격증 정렬 / 표시하기 - 민지
-class CertificateFilter(generics.ListCreateAPIView):
+# 자격증 신청 마감 dday가 임박한 순서대로 정렬
+# 아직 해야할 것: dday가 + 인 자격증 필터하기, 아직 신청 기간이 시작 안한 자격증 필터하기
+class CertificateOrderingFilter(generics.ListAPIView):
+    queryset = Certificate.objects.all()
     serializer_class = CertificateSerializer
-    
-    def get_approaching_certificates(self):
-        queryset = Certificate.objects.all()
-        filter_backends = [filters.OrderingFilter]
-        ordering_fields = ['reg_end_dday']
-        return queryset
+    filter_backends = [ filters.OrderingFilter ]
+    ordering_fields = ['reg_end_dday']
