@@ -10,4 +10,7 @@ urlpatterns = [
 
     # STUDYPLAN
     # path('studyplan/list', views.StudyPlanList),
+
+    # LIKE
+    path('cert_like/<str:pk>/<str:cert_id>', views.CertificateLikeAPI),
 ]
