@@ -3,6 +3,11 @@ from .views import HelloAPI
 from . import views
 
 urlpatterns = [
+
+    # Certificate Schedule
+    path('certschedule/', views.ListCertSchedule.as_view()),
+    path('certschedule/<int:pk>', views.DetailCertSchedule.as_view()),
+    
     # Certificates
     path('certificate/', views.ListCertificates.as_view()),
     path('certificate/<int:pk>', views.DetailCertificates.as_view()),
