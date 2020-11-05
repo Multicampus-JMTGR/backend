@@ -1,10 +1,16 @@
 from rest_framework import serializers
-from .models import Certificate, Category, StudyPlan
+from .models import Certificate, Category, CertSchedule
+
+class CertScheduleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CertSchedule
+        fields = '__all__'
 
 class CertificateSerializer(serializers.ModelSerializer):
+    schedule = CertScheduleSerializer(many=True, read_only=True)
     class Meta:
         model = Certificate
-        fields = ('cert_id', 'name', 'department', 'pass_percent', 'cost', 'cat_id_id')
+        fields = ('cert_id', 'name', 'department', 'pass_percent', 'cost', 'cat_id_id', 'schedule')
 
 class CategorySerializer(serializers.ModelSerializer):
     certificates = CertificateSerializer(many=True, read_only=True)
@@ -12,7 +18,3 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ('cat_id', 'name', 'certificates')
 
-class StudyPlanSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = StudyPlan
-        fields = '__all__'
