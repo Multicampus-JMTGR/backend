@@ -10,7 +10,7 @@ class CertificateSerializer(serializers.ModelSerializer):
     schedule = CertScheduleSerializer(many=True, read_only=True)
     class Meta:
         model = Certificate
-        fields = ('cert_id', 'name', 'department', 'pass_percent', 'cost', 'cat_id_id', 'schedule')
+        fields = ('cert_id', 'name', 'department', 'pass_percent', 'cost', 'examinee', 'cat_id_id', 'schedule')
 
 class CategorySerializer(serializers.ModelSerializer):
     certificates = CertificateSerializer(many=True, read_only=True)

@@ -19,3 +19,4 @@ traitlets==5.0.5
 wcwidth==0.2.5
 django-cors-headers==3.5.0
 djangorestframework-jwt==1.11.0
+django-filter==2.4.0 
