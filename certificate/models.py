@@ -28,7 +28,7 @@ class Certificate(models.Model):
         db_table = "CERTIFICATE"
 
     def __str__(self):
-        return self.cert_id
+        return self.name
 
 # 스터디 플랜
 # ondelete 설명 : https://lee-seul.github.io/django/backend/2018/01/28/django-model-on-delete.html
