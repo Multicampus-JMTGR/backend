@@ -10,8 +10,8 @@ class User(models.Model):
     name = models.CharField(max_length=50) #사용자 이름
     phone_number = models.CharField(max_length=50) #핸드폰 번호
     # 좋아요 Many to Many 설정 방법
-    cat_likes = models.ManyToManyField(Category, blank=True, db_constraint=True, related_name='USER_cat_likes')
-    cert_likes = models.ManyToManyField(Certificate, blank=True, db_constraint=True, related_name='USER_cert_likes')
+    cat_likes = models.ManyToManyField(Category, blank=True, db_constraint=True, related_name='cat_likes')
+    cert_likes = models.ManyToManyField(Certificate, blank=True, db_constraint=True, related_name='cert_likes')
 
 
     class Meta:
