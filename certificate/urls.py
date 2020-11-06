@@ -26,5 +26,5 @@ urlpatterns = [
     path('certificate/CertRecomByExaminee/', views.CertificateRecommendByExaminee.as_view()),
 
     # CertificateRecommand By Interest
-    path('certificate/CertRecomByInterest/', views.CertificateRecommendByInterest.as_view()),
+    path('certificate/CertRecomByInterest/', views.CertificateRecommendByInterest),
 ]
