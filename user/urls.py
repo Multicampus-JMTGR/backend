@@ -5,8 +5,8 @@ from . import views
 
 urlpatterns = [
    # USER
-    path('user/List/', views.UserAPIList),
-    path('user/detail/<str:pk>', views.UserAPIDetail),
+    path('user/API/', views.UserAPI),
+    path('user/detail/<str:pk>', views.UserOneAPI),
 
     # STUDYPLAN
     # path('studyplan/list', views.StudyPlanList),
