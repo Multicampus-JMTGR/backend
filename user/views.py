@@ -29,9 +29,9 @@ def UserAPI(request):
 
 # User Select One - 회원 존재 유무 확인 , User Update - 회원 수정 / 로그인 시 기존회원인 경우 update
 @api_view(['GET','PUT'])
-def UserOneAPI(request, pk):
+def UserOneAPI(request, email):
     try:
-        queryset = User.objects.get(pk=pk)
+        queryset = User.objects.get(email=email)
     except User.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
