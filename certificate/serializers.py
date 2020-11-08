@@ -10,12 +10,11 @@ class TestSerializer(serializers.ModelSerializer):
 
 #수녕 - 테스트중     
 class TestCertificateSerializer(serializers.ModelSerializer):
-    # cert_schedule model 에 있는 foreign key의 related_name을 변수로 설정
-    cert_schedule = TestSerializer(many=True, read_only=True)
+    # # cert_schedule model 에 있는 foreign key의 related_name을 변수로 설정
+    # cert_schedule = CertScheduleSerializer(many=True, read_only=True)
     class Meta:
-        model = Certificate
-        fields = ('cert_id', 'name', 'department', 'pass_percent', 'cost', 'examinee', 'cat_id_id', 'cert_schedule')
-
+        model = CertSchedule
+        fields = '__all__'
 
 
 class CertScheduleSerializer(serializers.ModelSerializer):
