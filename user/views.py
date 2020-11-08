@@ -39,47 +39,61 @@ def UserAPIDetail(request, pk):
         serializer = UserSerializer(queryset)
         return Response(serializer.data)
 
-class UserAPIDetail(generics.RetrieveUpdateDestroyAPIView):
-    """
-    유저정보, 불러오기, 삭제하기, 수정하기
-    """
-    queryset = User.objects.all()
+class UserLikeAPIView(generics.ListCreateAPIView):
     serializer_class = UserSerializer
+    queryset  = User.objects.all()
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
 
 
-# @action(methods=['patch'], detail=True)
-# def update(request, pk, cert_id):
-#         user = User.objects.get(email=pk)
-#         serializer = UserSerializer(instance=user, data=request.data)
+@api_view(['POST'])
+def LikeUpdate(request, email, cert_id):
+    user = User.objects.get(email=email)
+    print(user.name)
+    print(user.email)
+    like_posts = user.cert_likes.filter(cert_id=cert_id)
+    print(like_posts)
+    serializer = UserSerializer(user)
+    # print(serializer)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+    # print(serializer)
+#     if like_posts.exists():
+#         user.name = user.name
+#         user.email = user.email
+#         user.phone_number = user.phone_number
+#         user.cert_likes = user.cert_likes.remove(cert_id)
+#         serializer = UserSerializer(user)
+#         user.save()
+#         return Response(serializer.data, status=status.HTTP_201_CREATED)
+#     else:
+#         user.name = request.get('name')
+#         user.email = request.get('email')
+#         user.phone_number = request.get('phone_number')
+#         user.cert_likes = request.get('cert_likes').add(cert_id)
+#         serializer = UserSerializer(user)
+#         user.save()
+#         return Response(serializer.data)
+#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+# # 스터디 플랜 정보가 어차피 유저 안에 포함되 있어서 이게 따로 필요할진 모르겠음 일단 주석처리!
+# # Study Plan List
+# @api_view(['GET','POST'])
+# def StudyPlanList(request):
+#     if request.method == 'GET':
+#         queryset = StudyPlan.objects.filter()
+#         serializer = StudyPlanSerializer(queryset, many=True)
+#         return Response(serializer.data)
+
+#     elif request.method == 'POST':
+#         serializer = StudyPlanSerializer(data=request.data)
 #         if serializer.is_valid():
-#             check_like_post = serializer.object.cert_likes.filter(cert_likes=cert_id)
-#             if check_like_post == True:
-#                 serializer.object.cert_likes.remove(cert_id)
-#                 serializer.save()
-#                 return Response(serializer.data, status=status.HTTP_201_CREATED)
-#             else:
-#                 serializer.object.cert_likes.add(cert_id)
-#                 serializer.save()
-#             return Response(serializer.data)
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-
-# 스터디 플랜 정보가 어차피 유저 안에 포함되 있어서 이게 따로 필요할진 모르겠음 일단 주석처리!
-# Study Plan List
-@api_view(['GET','POST'])
-def StudyPlanList(request):
-    if request.method == 'GET':
-        queryset = StudyPlan.objects.filter()
-        serializer = StudyPlanSerializer(queryset, many=True)
-        return Response(serializer.data)
-
-    elif request.method == 'POST':
-        serializer = StudyPlanSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # @api_view(['GET', 'PUT'])
 # def CertificateLikeAPI(request, pk, cert_id):
