@@ -17,6 +17,7 @@ class UserSerializer(serializers.ModelSerializer):
         instance.interest = validated_data.get('interest', instance.interest)
         instance.name = validated_data.get('name', instance.name)
         instance.phone_number = validated_data.get('phone_number', instance.phone_number)
+        instance.cat_id = validated_data.get('cat_id', instance.cat_id)
         like_exists = validated_data.filter('cert_likes', cert_id)
 
         if like_exists == "":
