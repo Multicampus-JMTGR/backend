@@ -77,7 +77,7 @@
 
 
 
-### GET /certificate/CertRecomByInterest/ - 아직 테스트 중
+### GET /certificate/CertRecomByRandom/ - 아직 테스트 중
 
 - 비회원 > 랜덤 카테고리 > 해당 카테고리에 해당하는 자격증 중 인기자격증 8개 조회
 - 기능 
