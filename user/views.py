@@ -47,7 +47,7 @@ def UserOneAPI(request, email):
 
       
 # 좋아요 구현 방법 1: view에서 회원정보 수정하기
-@api_view(['POST'])
+@api_view(['GET', 'POST'])
 def LikeUpdate_1(request, email, cert_id):
     user = User.objects.get(email=email)
     like_posts = user.cert_likes.filter(cert_id=cert_id)
@@ -56,15 +56,15 @@ def LikeUpdate_1(request, email, cert_id):
         user.name = user.name
         user.email = user.email
         user.phone_number = user.phone_number
-        user.cert_likes = user.cert_likes.remove(cert_id)
+        user.cert_likes.remove(cert_id)
         serializer = UserSerializer(user)
         user.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     else:
-        user.name = request.get('name')
-        user.email = request.get('email')
-        user.phone_number = request.get('phone_number')
-        user.cert_likes = request.get('cert_likes').add(cert_id)
+        user.name = user.name
+        user.email = user.email
+        user.phone_number = user.phone_number
+        user.cert_likes.add(*cert_id)
         serializer = UserSerializer(user)
         user.save()
         return Response(serializer.data)

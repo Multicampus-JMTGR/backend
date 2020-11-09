@@ -40,7 +40,7 @@ class Certificate(models.Model):
 
 # 자격증 접수일정 정보
 class CertSchedule(models.Model):
-    # schedule_id = models.AutoField()
+    schedule_id = models.AutoField(primary_key=True)
     cert_id = models.ForeignKey(Certificate, related_name="cert_schedule", on_delete=models.CASCADE) #FK(자격증PK)
     test_round = models.IntegerField() #회차(숫자?)
     test_type = models.CharField(max_length=10) #필기/실기
@@ -96,4 +96,3 @@ class CertSchedule(models.Model):
 
 #     class Meta:
 #         db_table = "CATLIKES"
-
