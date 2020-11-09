@@ -2,12 +2,13 @@ from rest_framework import serializers
 from .models import Certificate, Category, CertSchedule
 from datetime import datetime
 
-#수녕 - 테스트중
-class TestSerializer(serializers.ModelSerializer):
-    category_name = Category.objects.name
+# CertificateSchedule + Certificate.name
+class CertNameCertScheduleSerializer(serializers.ModelSerializer):
+    certificates_name = serializers.CharField(read_only=True, source="cert_id.name")
     class Meta:
         model = CertSchedule
-        fields = ('cert_id', 'test_type', 'test_round', 'reg_start_date', 'reg_end_date', 'test_start_date', 'test_end_date', 'result_date_1', 'result_date_2')
+        fields = ('cert_id', 'test_type', 'test_round', 'reg_start_date', 'reg_end_date', 'test_start_date', 'test_end_date', 'result_date_1', 'result_date_2', 'certificates_name',)
+
 
 
 # Category 기본정보
