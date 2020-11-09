@@ -39,44 +39,36 @@ def UserAPIDetail(request, pk):
         serializer = UserSerializer(queryset)
         return Response(serializer.data)
 
-class UserLikeAPIView(generics.ListCreateAPIView):
-    serializer_class = UserSerializer
-    queryset  = User.objects.all()
 
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-
-
+# 좋아요 구현 방법 1: view에서 회원정보 수정하기
 @api_view(['POST'])
-def LikeUpdate(request, email, cert_id):
+def LikeUpdate_1(request, email, cert_id):
     user = User.objects.get(email=email)
-    print(user.name)
-    print(user.email)
     like_posts = user.cert_likes.filter(cert_id=cert_id)
-    print(like_posts)
     serializer = UserSerializer(user)
-    # print(serializer)
-    return Response(serializer.data, status=status.HTTP_201_CREATED)
-    
-    # print(serializer)
-#     if like_posts.exists():
-#         user.name = user.name
-#         user.email = user.email
-#         user.phone_number = user.phone_number
-#         user.cert_likes = user.cert_likes.remove(cert_id)
-#         serializer = UserSerializer(user)
-#         user.save()
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
-#     else:
-#         user.name = request.get('name')
-#         user.email = request.get('email')
-#         user.phone_number = request.get('phone_number')
-#         user.cert_likes = request.get('cert_likes').add(cert_id)
-#         serializer = UserSerializer(user)
-#         user.save()
-#         return Response(serializer.data)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    if like_posts.exists():
+        user.name = user.name
+        user.email = user.email
+        user.phone_number = user.phone_number
+        user.cert_likes = user.cert_likes.remove(cert_id)
+        serializer = UserSerializer(user)
+        user.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    else:
+        user.name = request.get('name')
+        user.email = request.get('email')
+        user.phone_number = request.get('phone_number')
+        user.cert_likes = request.get('cert_likes').add(cert_id)
+        serializer = UserSerializer(user)
+        user.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+# 좋아요 구현 방법 2: view를 통해 요청 받을 정보를 serializer에서 처리하고 다시 값 반환하기
+class LikeUpdate_2(generics.ListCreateAPIView):
+    queryset  = User.objects.all()
+    serializer_class = UserSerializer
 
 
 # # 스터디 플랜 정보가 어차피 유저 안에 포함되 있어서 이게 따로 필요할진 모르겠음 일단 주석처리!
