@@ -1,14 +1,30 @@
 from rest_framework import serializers
 from .models import Certificate, Category, CertSchedule
+from datetime import datetime
 
-class CertScheduleSerializer(serializers.ModelSerializer):
+#수녕 - 테스트중
+class TestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CertSchedule.objects.select_related('cert_id').filter(test_start_date__lte=datetime.now()).order_by('test_start_date')
+        fields = '__all__'
+
+#수녕 - 테스트중     
+class TestCertificateSerializer(serializers.ModelSerializer):
+    # # cert_schedule model 에 있는 foreign key의 related_name을 변수로 설정
+    # cert_schedule = CertScheduleSerializer(many=True, read_only=True)
     class Meta:
         model = CertSchedule
         fields = '__all__'
 
+
+class CertScheduleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CertSchedule
+        fields = ('cert_id', 'test_type', 'test_round', 'reg_start_date', 'reg_end_date', 'test_start_date', 'test_end_date', 'result_date_1', 'result_date_2')
+
 class CertificateSerializer(serializers.ModelSerializer):
     # cert_schedule model 에 있는 foreign key의 related_name을 변수로 설정
-    cert_schedule = CertScheduleSerializer(many=True, read_only=True) 
+    cert_schedule = CertScheduleSerializer(many=True, read_only=True)
     class Meta:
         model = Certificate
         fields = ('cert_id', 'name', 'department', 'pass_percent', 'pass_percent_sil', 'cost', 'cost_sil',\
