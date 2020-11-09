@@ -40,7 +40,7 @@ class Certificate(models.Model):
 
 # 자격증 접수일정 정보
 class CertSchedule(models.Model):
-    # schedule_id = models.AutoField()
+    schedule_id = models.IntegerField(primary_key=True)
     cert_id = models.ForeignKey(Certificate, related_name="cert_schedule", on_delete=models.CASCADE) #FK(자격증PK)
     test_round = models.IntegerField() #회차(숫자?)
     test_type = models.CharField(max_length=10) #필기/실기
@@ -50,7 +50,7 @@ class CertSchedule(models.Model):
     test_end_date = models.DateField(blank=True, null=True) #시험 마감 날짜
     result_date_1 = models.DateField(blank=True, null=True) #결과 날짜
     result_date_2 = models.DateField(blank=True, null=True) #추가적인 결과 날짜가 있으면
-    
+
     class Meta:
         db_table = "CERT_SCHEDULE"
         # 장고에서는 compound PK 지정이 안되서 pk는 자동생성되는 인덱스 값을 만들고 유니크한 필드값을 지정
