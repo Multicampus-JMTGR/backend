@@ -24,11 +24,11 @@ class CertScheduleSerializer(serializers.ModelSerializer):
 
 class CertificateSerializer(serializers.ModelSerializer):
     # cert_schedule model 에 있는 foreign key의 related_name을 변수로 설정
-    cert_schedule = CertScheduleSerializer(many=True, read_only=True)
+    # cert_schedule = CertScheduleSerializer(many=True, read_only=True)
     class Meta:
         model = Certificate
         fields = ('cert_id', 'name', 'department', 'pass_percent', 'pass_percent_sil', 'cost', 'cost_sil',\
-                  'examinee', 'examinee_sil', 'cat_id_id', 'cert_schedule')
+                  'examinee', 'examinee_sil', 'cat_id_id')
 
 
 class CategorySerializer(serializers.ModelSerializer):
