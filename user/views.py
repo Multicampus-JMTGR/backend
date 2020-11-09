@@ -6,13 +6,14 @@ from rest_framework.decorators import api_view, action
 from .models import User, StudyPlan
 from .serializers import UserSerializer, StudyPlanSerializer, UserLikesSerializer, UserLikesStudySerializer
 
+
 # Create your views here.
 @api_view(['GET'])
 def HelloAPI(request):
     return Response("hello world!")
 
 
-#User Insert / Select List
+#User Insert / Select List - snchoi
 @api_view(['GET','POST'])
 def UserAPI(request):
     if request.method == 'GET':
@@ -26,6 +27,7 @@ def UserAPI(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class ListUsersLikes(generics.ListCreateAPIView):
     queryset = User.objects.all()

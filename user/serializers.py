@@ -9,6 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = '__all__'
 
+
 # 유저 정보 + 유저가 좋아요 한 자격증, 카테고리 목록
 class UserLikesSerializer(serializers.ModelSerializer):
     cert_likes = CertificateSerializer(many=True, read_only=True)
