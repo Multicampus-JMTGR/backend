@@ -20,7 +20,7 @@ class TestCertificateSerializer(serializers.ModelSerializer):
 class CertScheduleSerializer(serializers.ModelSerializer):
     class Meta:
         model = CertSchedule
-        fields = '__all__'
+        fields = ('cert_id', 'test_type', 'test_round', 'reg_start_date', 'reg_end_date', 'test_start_date', 'test_end_date', 'result_date_1', 'result_date_2')
 
 class CertificateSerializer(serializers.ModelSerializer):
     # cert_schedule model 에 있는 foreign key의 related_name을 변수로 설정

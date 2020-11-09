@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='CertSchedule',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                # ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('test_round', models.IntegerField()),
                 ('test_type', models.CharField(max_length=10)),
                 ('reg_start_date', models.DateField(blank=True, null=True)),
