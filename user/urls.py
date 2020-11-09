@@ -12,7 +12,7 @@ urlpatterns = [
     path('api/user/detail', views.ListUsersLikes.as_view()),
 
     # 유저 한명의 데이터만 표시
-    path('api/user/<str:pk>', views.UserOneAPI),
+    path('api/user/<str:email>', views.UserOneAPI),
 
     # Studyplan List
     path('api/studyplan', views.StudyPlanList),

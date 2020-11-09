@@ -9,21 +9,21 @@ class TestSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-# 순수 Category
+# Category 기본정보
 class PureCategoryOnlySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'
 
 
-# 순수 Certificate     
+# Certificate 기본정보
 class CertificateOnlySerializer(serializers.ModelSerializer):
     class Meta:
         model = Certificate
         fields = '__all__'
 
 
-# 순수 CertSchedule
+# CertSchedule 기본정보
 class CertScheduleSerializer(serializers.ModelSerializer):
     class Meta:
         model = CertSchedule
