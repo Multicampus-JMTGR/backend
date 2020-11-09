@@ -8,6 +8,11 @@ class StudyPlanSerializer(serializers.ModelSerializer):
         model = StudyPlan
         fields = '__all__'
 
+class PureUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
+
 class UserSerializer(serializers.ModelSerializer):
     cert_likes = CertificateSerializer(many=True, read_only=True)
     cat_likes = CategorySerializer(many=True, read_only=True)

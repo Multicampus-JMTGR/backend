@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view, action
 from .models import User, StudyPlan
-from .serializers import UserSerializer, StudyPlanSerializer
+from .serializers import UserSerializer, StudyPlanSerializer, PureUserSerializer
 
 # Create your views here.
 @api_view(['GET'])
@@ -39,7 +39,7 @@ def UserOneAPI(request, email):
         serializer = UserSerializer(queryset)
         return Response(serializer.data)
     elif request.method == 'PUT':
-        serializer = UserSerializer(queryset, data=request.data, partial=True)
+        serializer = PureUserSerializer(queryset, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
