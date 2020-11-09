@@ -97,30 +97,30 @@
 
 ## REST API - 민지 부분 
 
-## GET /certschedule
+### GET /certschedule
 - 자격증 스케쥴 전체 리스트 겟
 
-## GET /certschedule/<int:pk>
+### GET /certschedule/<int:pk>
 - 자격증 스케쥴 pk를 이용해서 자격증 상세 정보 표시
 
-## GET /certificate
+### GET /certificate
 - 자격증 전체 리스트 겟
 
-## GET /certificate/<int:pk>
+### GET /certificate/<int:pk>
 - 자격증 번호를 이용해서 자격증 상세 정보 표시
 
-## GET /category
+### GET /category
 - 카테고리 전체 리스트 겟
 
-## GET /certificate/<int:pk>
+### GET /certificate/<int:pk>
 - 카테고리 번호를 이용해서 카테고리 상세 정보 표시
 
-## POST /cert_like_1/<str:pk>/<str:cert_id> (좋아요 기능 두개중 어떤게 더 적합한지 아직 테스트중)
+### POST /cert_like_1/<str:pk>/<str:cert_id> (좋아요 기능 두개중 어떤게 더 적합한지 아직 테스트중)
 - 사용자 정보를 불러와서 좋아요 자격증 추가
 - 이미 있다면 자격증을 삭제
 - views.py에서 좋아요 알고리즘을 처리
 
-## POST/cert_like_2
+### POST/cert_like_2
 - 위와 동일한 기능
 - serializers.py 에서 좋아요 알고리즘을 처리
 
