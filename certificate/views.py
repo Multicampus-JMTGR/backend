@@ -9,7 +9,7 @@ from django_filters.rest_framework import DjangoFilterBackend, FilterSet
 from django.db.models import Q
 from .models import Certificate, Category, CertSchedule
 from user.models import User
-from .serializers import CertificateSerializer, CategorySerializer, CertScheduleSerializer, CatCertSerializer, CertificateOnlySerializer, TestSerializer
+from .serializers import CertificateSerializer, CategorySerializer, CertScheduleSerializer, CatCertSerializer, CertificateOnlySerializer, CertNameCertScheduleSerializer
 from user.serializers import UserSerializer
 import random
 from datetime import datetime
@@ -129,5 +129,5 @@ def CertificateRecommendByInterestSil(request):
 # 필기/실기 시험 결과 날짜가 임박한 자격증 정렬 / 표시하기 - 수녕
 class CertificateOrderingFilter(generics.ListAPIView):
     queryset = CertSchedule.objects.select_related('cert_id').filter(result_date_1__gte=datetime.now()).order_by('result_date_1')
-    serializer_class = TestSerializer 
+    serializer_class = CertNameCertScheduleSerializer 
 
