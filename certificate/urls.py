@@ -19,7 +19,7 @@ urlpatterns = [
     # Certificates Filter - snchoi
     path('certificate/CertificatesFilter/', views.CertifiacetFilterSearchAPI),
 
-    # Certificate Ordering Filter - minji
+    # Certificate Ordering Filter - snchoi
     path('certificate/OrderingFilter/', views.CertificateOrderingFilter.as_view()), #테스트중
 
     # CertificateRecommand By Pilgi Examinee - snchoi
@@ -33,4 +33,7 @@ urlpatterns = [
 
     # CertificateRecommand By Random(비회원) - snchoi
     path('certificate/CertRecomByRandom/', views.CertificateRecommendByRandom), #테스트중
+
+    # CertificateRecommand By Interest & Random
+    # path('certificate/CertRecomByInterestSil/', views.CertificateRecommendByInterestSil)
 ]

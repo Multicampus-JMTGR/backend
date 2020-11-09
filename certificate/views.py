@@ -105,7 +105,7 @@ def CertificateRecommendByRandom(request):
 
 
 
-# #추천 자격증 - 관심사 카테고리에 있는 인기 자격증 (회원) - 수녕
+# #추천 자격증 - 관심사 카테고리에 있는 필기 인기 자격증 - 수녕
 # @api_view(['GET'])
 # def CertificateRecommendByInterest(request):    
 #     email = request.GET.get('email')
@@ -126,6 +126,31 @@ def CertificateRecommendByRandom(request):
 #         queryset = Certificate.objects.select_related('cat_id').filter(cat_id__name=random_interest).order_by('-examinee')[:8]
 #         cert_serializer = CertificateSerializer(queryset, many=True)
 #         return Response(cert_serializer.data)
+
+
+# #추천 자격증 - 관심사 카테고리에 있는 실기 인기 자격증 - 수녕
+# @api_view(['GET'])
+# def CertificateRecommendByInterestSil(request):    
+#     email = request.GET.get('email')
+#     user = User.objects.get(email=email)
+
+#     if user: #회원
+#         interest = user.interest #관심사항 = 카테고리명      
+#             # 해당 카테고리 명에 해당 하는 자격증 중에 응시수 많은 순서대로 8개 조회
+#         queryset = Certificate.objects.select_related('cat_id').filter(cat_id__name=interest).order_by('-examinee_sil')[:8]
+#         cert_serializer = CertificateSerializer(queryset, many=True)
+#         return Response(cert_serializer.data)
+#     else: #비회원
+#         cat_names = Category.objects.only('name') # 랜덤추출 - 카테고리이름
+#         size = len(cat_names) # 랜덤추출 - 사이즈
+#         random_num = random.randint(0,size-1) #랜덤추출 - 숫자
+#         random_interest = list(cat_names)[random_num] #랜덤추출 - 관심사
+        
+#         queryset = Certificate.objects.select_related('cat_id').filter(cat_id__name=random_interest).order_by('-examinee_sil')[:8]
+#         cert_serializer = CertificateSerializer(queryset, many=True)
+#         return Response(cert_serializer.data)
+
+
 
 
 
