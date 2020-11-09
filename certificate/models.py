@@ -23,9 +23,12 @@ class Certificate(models.Model):
     cat_id = models.ForeignKey(Category, related_name="certificates", on_delete=models.CASCADE) #FK(카테고리PK)
     name = models.CharField(max_length=100) #자격증 이름
     department = models.CharField(max_length=100) #시행기관
-    pass_percent = models.FloatField(max_length=50) #합격률
-    cost = models.CharField(max_length=500) #응시료
-    examinee = models.IntegerField(default=0) #응시자 수
+    pass_percent = models.FloatField(max_length=50, blank=True, null=True) #합격률
+    pass_percent_sil = models.FloatField(max_length=50, blank=True, null=True) #합격률
+    cost = models.CharField(max_length=500, blank=True, null=True) #응시료
+    cost_sil = models.CharField(max_length=500, blank=True, null=True) #응시료
+    examinee = models.IntegerField(default=0, blank=True, null=True) #응시자 수
+    examinee_sil = models.IntegerField(default=0, blank=True, null=True) #응시자 수
 
     class Meta:
         db_table = "CERTIFICATE"
