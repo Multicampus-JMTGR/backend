@@ -93,12 +93,12 @@
 
 
 
-### GET api/certificate/OrderingFilter/ - 아직 테스트 중
+### GET api/certificate/OrderingFilter/
 
 - 시험 결과 날자가 임박한 자격증 졍렬
 - 기능
   - 메인 페이지 노출
-- return: certificateSchedule[]+certificate[]
+- return: certificateSchedule + certificate.name []
 
 
 
