@@ -102,27 +102,22 @@
 
 
 
-## REST API - 민지 부분 
+## REST API USER PART 
 
-### GET /certschedule
-- 자격증 스케쥴 전체 리스트 겟
+### GET /api/user
+- 유저 기본정보만 포함한 리스트 출력 (이름, 이메일 등등..)
 
-### GET /certschedule/<int:pk>
-- 자격증 스케쥴 pk를 이용해서 자격증 상세 정보 표시
+### GET /api/user/detail
+- 유저 기본정보 + 좋아요한 카테고리 / 자격증 포함한 리스트 출력
 
-### GET /certificate
-- 자격증 전체 리스트 겟
+### GET /api/user/<str:pk>
+- 유저 한명의 모든 상세정보 출력
+- 기본정보 + 좋아요 한 카테고리 / 자격증 + 스터디 플랜
 
-### GET /certificate/<int:pk>
-- 자격증 번호를 이용해서 자격증 상세 정보 표시
+### GET /api/studyplan
+- 스터디 플랜 전체 리스트 겟
 
-### GET /category
-- 카테고리 전체 리스트 겟
-
-### GET /certificate/<int:pk>
-- 카테고리 번호를 이용해서 카테고리 상세 정보 표시
-
-### POST /cert_like/<str:email>/<str:cert_id> (좋아요 기능 두개중 어떤게 더 적합한지 아직 테스트중)
+### POST /api/cert_like/<str:email>/<str:cert_id>
 - email을 통해 유저 정보를 호출
 - cert_id에 매핑된 자격증 정보를 유저 cert_likes에 추가 (like)
 - 이미 동일한 cert_id가 존재한다면 자격증을 cert_likes에서 삭제 (unlike)

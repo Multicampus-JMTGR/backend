@@ -12,17 +12,42 @@ def HelloAPI(request):
     return Response("hello world!")
 
 
-class ListUsers(generics.ListCreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+#User Insert / Select List
+@api_view(['GET','POST'])
+def UserAPI(request):
+    if request.method == 'GET':
+        queryset = User.objects.all()
+        serializer = UserSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ListUsersLikes(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserLikesSerializer
 
-class DetailUsers(generics.RetrieveUpdateDestroyAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserLikesStudySerializer
+# User Select One - 회원 존재 유무 확인 , User Update - 회원 수정 / 로그인 시 기존회원인 경우 update
+@api_view(['GET','PUT'])
+def UserOneAPI(request, pk):
+    try:
+        queryset = User.objects.get(email=pk)
+    except User.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = UserLikesStudySerializer(queryset)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = UserLikesStudySerializer(queryset, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # # 스터디 플랜 정보가 어차피 유저 안에 포함되 있어서 이게 따로 필요할진 모르겠음 일단 주석처리!
@@ -48,13 +73,13 @@ def StudyPlanList(request):
 def CertificateLike(request, email, cert_id):
     user = User.objects.get(email=email)
     like_posts = user.cert_likes.filter(cert_id=cert_id)
-    serializer = UserSerializer(user)
+    serializer = UserLikesSerializer(user)
     if like_posts.exists():
         user.name = user.name
         user.email = user.email
         user.phone_number = user.phone_number
         user.cert_likes.remove(cert_id)
-        serializer = UserSerializer(user)
+        serializer = UserLikesSerializer(user)
         user.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     else:
@@ -62,7 +87,7 @@ def CertificateLike(request, email, cert_id):
         user.email = user.email
         user.phone_number = user.phone_number
         user.cert_likes.add(*cert_id)
-        serializer = UserSerializer(user)
+        serializer = UserLikesSerializer(user)
         user.save()
         return Response(serializer.data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -70,39 +95,10 @@ def CertificateLike(request, email, cert_id):
 
 
 
-### USER LIST 호출 하는 다른 방법 ###
+## USER LIST 호출 하는 다른 방법 ###
 
 
-# #User Insert / Select List
-# @api_view(['GET','POST'])
-# def UserAPI(request):
-#     if request.method == 'GET':
-#         queryset = User.objects.all()
-#         serializer = UserSerializer(queryset, many=True)
-#         return Response(serializer.data)
+# class DetailUsers(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = User.objects.all()
+#     serializer_class = UserLikesStudySerializer
 
-#     elif request.method == 'POST':
-#         serializer = UserSerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-# # User Select One - 회원 존재 유무 확인 , User Update - 회원 수정 / 로그인 시 기존회원인 경우 update
-# @api_view(['GET','PUT'])
-# def UserOneAPI(request, email):
-#     try:
-#         queryset = User.objects.get(email=email)
-#     except User.DoesNotExist:
-#         return Response(status=status.HTTP_404_NOT_FOUND)
-
-#     if request.method == 'GET':
-#         serializer = UserSerializer(queryset)
-#         return Response(serializer.data)
-#     elif request.method == 'PUT':
-#         serializer = UserSerializer(queryset, data=request.data, partial=True)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
