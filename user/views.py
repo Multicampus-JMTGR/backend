@@ -12,9 +12,9 @@ def HelloAPI(request):
     return Response("hello world!")
 
 
-#User Insert/Select List
+#User Insert / Select List
 @api_view(['GET','POST'])
-def UserAPIList(request):
+def UserAPI(request):
     if request.method == 'GET':
         queryset = User.objects.all()
         serializer = UserSerializer(queryset, many=True)
@@ -27,19 +27,25 @@ def UserAPIList(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# User Select One
-@api_view(['GET'])
-def UserAPIDetail(request, pk):
+# User Select One - 회원 존재 유무 확인 , User Update - 회원 수정 / 로그인 시 기존회원인 경우 update
+@api_view(['GET','PUT'])
+def UserOneAPI(request, email):
     try:
-        queryset = User.objects.get(pk=pk)
+        queryset = User.objects.get(email=email)
     except User.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
         serializer = UserSerializer(queryset)
         return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = UserSerializer(queryset, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+      
 # 좋아요 구현 방법 1: view에서 회원정보 수정하기
 @api_view(['POST'])
 def LikeUpdate_1(request, email, cert_id):
