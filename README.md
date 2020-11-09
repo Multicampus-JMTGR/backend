@@ -1,13 +1,13 @@
 ## REST API - 수녕부분 
 
-### GET /user/ALL
+### GET api/user/ALL
 
 - 모든 사용자 정보 목록을 가져옴
 - return: user[]
 
 
 
-### POST /user/ALL
+### POST api/user/ALL
 
 - 사용자 정보 저장
 - body: {email: str(이메일-pk), interest: str(관심카테고리), name:str(사용자이름), phone_number: str(핸드폰번호)}
@@ -15,7 +15,7 @@
 
 
 
-### GET /user/Detail/\<str:email>
+### GET api/user/\<str:email>
 
 - 특정 사용자 정보 가져옴, 사용자 없으면 404 return
 - email : 로그인 사용자 email
@@ -25,7 +25,7 @@
 
 
 
-### PUT /user/Detail/\<str:email>
+### PUT api/user/\<str:email>
 
 - 특정 사용자 정보 수정
 - email : 로그인 사용자 email
@@ -39,7 +39,7 @@
 
 
 
-### GET /certificate/CertificatesFilter/
+### GET api/certificate/CertificatesFilter/
 
 - 키워드에 해당하는 자격증 정보 조회
 - parameter : { keyword : 검색어 }
@@ -51,7 +51,7 @@
 
 
 
-### GET /certificate/CertRecomByExaminee/
+### GET api/certificate/CertRecomByExaminee/
 
 - 전체 자격증 중 **필기** 응시자 수 많은 순으로 8개씩 조회
 - 기능
@@ -60,7 +60,7 @@
 
 
 
-### GET /certificate/CertRecomByExamineeSil/
+### GET api/certificate/CertRecomByExamineeSil/
 
 - 전체 자격증 중 **실기** 응시자 수 많은 순으로 8개 조회
 - 기능
@@ -69,7 +69,7 @@
 
 
 
-### GET /certificate/CertRecomByInterest/
+### GET api/certificate/CertRecomByInterest/
 
 - 회원 > 관심카테고리 > 해당 카테고리에 해당하는 자격증 중 **필기** 인기자격증 8개 조회
 - 비회원 > 램덤카테고리 > 해당 카테고리에 해당하는 자격증 중 **필기** 인기자격증 8개 조회
@@ -81,7 +81,7 @@
 
 
 
-### GET /certificate/CertRecomByInterestSil/
+### GET api/certificate/CertRecomByInterestSil/
 
 - 회원 > 관심카테고리 > 해당 카테고리에 해당하는 자격증 중 **실기** 인기자격증 8개 조회
 - 비회원 > 램덤카테고리 > 해당 카테고리에 해당하는 자격증 중 **실기** 인기자격증 8개 조회
@@ -93,7 +93,7 @@
 
 
 
-### GET / certificate/OrderingFilter/ - 아직 테스트 중
+### GET api/certificate/OrderingFilter/ - 아직 테스트 중
 
 - 시험 결과 날자가 임박한 자격증 졍렬
 - 기능
