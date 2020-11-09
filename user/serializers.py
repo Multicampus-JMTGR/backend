@@ -3,18 +3,36 @@ from .models import User, StudyPlan
 from certificate.models import Certificate, Category
 from certificate.serializers import CertificateSerializer, CategorySerializer, CertScheduleSerializer
 
-class StudyPlanSerializer(serializers.ModelSerializer):
+# 유저 기본 정보       
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = StudyPlan
+        model = User
         fields = '__all__'
 
-class UserSerializer(serializers.ModelSerializer):
+# 유저 정보 + 유저가 좋아요 한 자격증, 카테고리 목록
+class UserLikesSerializer(serializers.ModelSerializer):
     cert_likes = CertificateSerializer(many=True, read_only=True)
     cat_likes = CategorySerializer(many=True, read_only=True)
 
     class Meta:
         model = User
         fields = ('email', 'interest', 'name', 'phone_number', 'cat_likes', 'cert_likes')
+
+# 스터디 플랜만
+class StudyPlanSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StudyPlan
+        fields = ('content', 'email', 'cert', 'date', 'contents')
+
+# 유저 정보 + 좋아요 한 자격증, 카테고리 목록, 스터디 플랜
+class UserLikesStudySerializer(serializers.ModelSerializer):
+    cert_likes = CertificateSerializer(many=True, read_only=True)
+    cat_likes = CategorySerializer(many=True, read_only=True)
+    study_plan = StudyPlanSerializer(many=True, read_only = True)
+
+    class Meta:
+        model = User
+        fields = ('email', 'interest', 'name', 'phone_number', 'cat_likes', 'cert_likes', 'study_plan')
 
 
     # def update(self, instance, validated_data, cert_id):
