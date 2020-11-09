@@ -15,7 +15,7 @@
 
 
 
-### GET /user/Detail/\<str:email> - 뭘좀 바꿔서 다시 테스트 해봐야함
+### GET /user/Detail/\<str:email>
 
 - 특정 사용자 정보 가져옴, 사용자 없으면 404 return
 - email : 로그인 사용자 email
@@ -25,7 +25,7 @@
 
 
 
-### PUT /user/Detail/\<str:email> - 뭘좀 바꿔서 다시 테스트 해봐야함
+### PUT /user/Detail/\<str:email>
 
 - 특정 사용자 정보 수정
 - email : 로그인 사용자 email
@@ -45,8 +45,9 @@
 - parameter : { keyword : 검색어 }
 - 기능 
   - 메인페이지 노출
-  - 자격증 검색 기능 (키워드 : 카테고리명, 자격증명, 키워드 없을 시 전체 자격증 조회)
-- return: certificate[] 또는 category[]+certificate[]
+  - 자격증 검색 기능 (키워드 : 자격증명, 주최기관, 키워드 없을 시 전체 자격증 조회)
+          - 특정 단어를 포함한 경우 다 나오도록 구현함
+- return: certificate[]
 
 
 
@@ -59,7 +60,7 @@
 
 
 
-### GET /certificate/CertRecomByExamineeSil/ - 뭘좀 바꿔서 다시 테스트 해봐야함
+### GET /certificate/CertRecomByExamineeSil/
 
 - 전체 자격증 중 **실기** 응시자 수 많은 순으로 8개 조회
 - 기능
@@ -68,18 +69,22 @@
 
 
 
-### GET /certificate/CertRecomByInterest/ - 아직 테스트 중
+### GET /certificate/CertRecomByInterest/
 
-- 회원 > 관심카테고리 > 해당 카테고리에 해당하는 자격증 중 인기자격증 8개 조회
+- 회원 > 관심카테고리 > 해당 카테고리에 해당하는 자격증 중 **필기** 인기자격증 8개 조회
+- 비회원 > 램덤카테고리 > 해당 카테고리에 해당하는 자격증 중 **필기** 인기자격증 8개 조회
+- parameter : { email : 사용자이메일 } - 비회원인 경우 param에 아무것도 들어가지 
 - 기능 
   - 메인페이지 노출
 - return: certificate[]
 
 
 
-### GET /certificate/CertRecomByRandom/ - 아직 테스트 중
+### GET /certificate/CertRecomByInterestSil/
 
-- 비회원 > 랜덤 카테고리 > 해당 카테고리에 해당하는 자격증 중 인기자격증 8개 조회
+- 회원 > 관심카테고리 > 해당 카테고리에 해당하는 자격증 중 **실기** 인기자격증 8개 조회
+- 비회원 > 램덤카테고리 > 해당 카테고리에 해당하는 자격증 중 **실기** 인기자격증 8개 조회
+- parameter : { email : 사용자이메일 } - 비회원인 경우 param에 아무것도 들어가지 
 - 기능 
   - 메인페이지 노출
 - return: certificate[]
