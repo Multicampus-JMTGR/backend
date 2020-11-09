@@ -32,5 +32,5 @@ urlpatterns = [
     path('api/certificate/CertRecomByInterest/', views.CertificateRecommendByInterest),
 
     # CertificateRecommand By Interest & Random - 실기 - snchoi
-    path('api/certificate/CertRecomByInterestSil/', views.CertificateRecommendByInterestSil)
+    path('api/certificate/CertRecomByInterestSil/', views.CertificateRecommendByInterestSil),
 ]

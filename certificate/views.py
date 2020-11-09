@@ -127,15 +127,7 @@ def CertificateRecommendByInterestSil(request):
 
 
 # 필기/실시 시험 날짜가 임박한 자격증 정렬 / 표시하기 - 수녕
-# 자격증 신청 마감 dday가 임박한 순서대로 정렬
-# 아직 해야할 것: dday가 + 인 자격증 필터하기, 아직 신청 기간이 시작 안한 자격증 필터하기
 class CertificateOrderingFilter(generics.ListAPIView):
-    queryset = CertSchedule.objects.all()
-    serializer_class = CertificateOnlySerializer
-    # queryset = CertSchedule.objects.select_related('cert_id').filter(test_start_date__lte=datetime.now()).values('cert_id__name', 'cert_id', 'test_round', 'test_type', 'reg_start_date', 'reg_end_date', 'test_start_date', 'test_end_date', 'result_date_1', 'result_date_2').order_by('test_start_date')
-    # serializer_class = CertScheduleSerializer
+    queryset = CertSchedule.objects.select_related('cert_id').filter(test_start_date__lte=datetime.now()).order_by('test_start_date')
+    serializer_class = CertScheduleSerializer 
 
-    # queryset = Certificate.objects.all()
-    # serializer_class = CertificateSerializer
-    # filter_backends = (OrderingFilter,)
-    # ordering_fields = ('test_start_date') #test_start_dday
