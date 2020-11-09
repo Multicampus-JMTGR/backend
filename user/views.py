@@ -12,7 +12,7 @@ def HelloAPI(request):
     return Response("hello world!")
 
 
-#User Insert / Select List
+#User Insert / Select List - snchoi
 @api_view(['GET','POST'])
 def UserAPI(request):
     if request.method == 'GET':
@@ -27,7 +27,7 @@ def UserAPI(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# User Select One - 회원 존재 유무 확인 , User Update - 회원 수정 / 로그인 시 기존회원인 경우 update
+# User Select One - 회원 존재 유무 확인 , User Update - 회원 수정 / 로그인 시 기존회원인 경우 update - snchoi
 @api_view(['GET','PUT'])
 def UserOneAPI(request, email):
     try:
