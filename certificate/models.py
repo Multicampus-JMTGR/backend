@@ -29,6 +29,7 @@ class Certificate(models.Model):
     cost_sil = models.CharField(max_length=500, blank=True, null=True) #응시료
     examinee = models.IntegerField(default=0, blank=True, null=True) #응시자 수
     examinee_sil = models.IntegerField(default=0, blank=True, null=True) #응시자 수
+    link = models.CharField(max_length=500, blank=True, null=True)
 
     class Meta:
         db_table = "CERTIFICATE"
@@ -96,4 +97,3 @@ class CertSchedule(models.Model):
 
 #     class Meta:
 #         db_table = "CATLIKES"
-
