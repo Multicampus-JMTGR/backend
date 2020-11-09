@@ -3,11 +3,20 @@ from .models import Certificate, Category, CertSchedule
 from datetime import datetime
 
 #수녕 - 테스트중
+class TestTestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Certificate
+        fields = '__all__'
+
+#수녕 - 테스트중
 class TestSerializer(serializers.ModelSerializer):
-    category_name = Category.objects.name
+    certificate = TestTestSerializer(many=True, read_only=True)
     class Meta:
         model = CertSchedule
-        fields = ('cert_id', 'test_type', 'test_round', 'reg_start_date', 'reg_end_date', 'test_start_date', 'test_end_date', 'result_date_1', 'result_date_2')
+        fields = ('cert_id', 'test_type', 'test_round', 'reg_start_date', 'reg_end_date', 'test_start_date', 'test_end_date', 'result_date_1', 'result_date_2', 'certificate')
+
+
+
 
 
 # Category 기본정보
