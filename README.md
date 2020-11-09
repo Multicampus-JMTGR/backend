@@ -115,13 +115,9 @@
 ### GET /certificate/<int:pk>
 - 카테고리 번호를 이용해서 카테고리 상세 정보 표시
 
-### POST /cert_like_1/<str:pk>/<str:cert_id> (좋아요 기능 두개중 어떤게 더 적합한지 아직 테스트중)
-- 사용자 정보를 불러와서 좋아요 자격증 추가
-- 이미 있다면 자격증을 삭제
-- views.py에서 좋아요 알고리즘을 처리
-
-### POST/cert_like_2
-- 위와 동일한 기능
-- serializers.py 에서 좋아요 알고리즘을 처리
-
-
+### POST /cert_like/<str:email>/<str:cert_id> (좋아요 기능 두개중 어떤게 더 적합한지 아직 테스트중)
+- email을 통해 유저 정보를 호출
+- cert_id에 매핑된 자격증 정보를 유저 cert_likes에 추가 (like)
+- 이미 동일한 cert_id가 존재한다면 자격증을 cert_likes에서 삭제 (unlike)
+- 기능
+  - 마이페이지 / 자격증 리스트에서 자격증 좋아요 추가
