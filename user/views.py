@@ -92,12 +92,12 @@ def CertificateLike(request, email, cert_id):
         user.interest = user.interest
         user.email = user.email
         user.phone_number = user.phone_number
-        user.cert_likes.add(*cert_id)
+        user.cert_likes.add(cert_id)
         user.save()
         serializer = UserLikesSerializer(data=user)
         if serializer.is_valid():
             serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializser.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 

@@ -18,6 +18,6 @@ urlpatterns = [
     path('api/studyplan', views.StudyPlanList),
 
     # 자격증 좋아요 request 보내는 url
-    path('api/cert_like/<str:email>/<str:cert_id>', views.CertificateLike),
+    path('api/cert_like/<str:email>/<int:cert_id>', views.CertificateLike),
 
 ]
