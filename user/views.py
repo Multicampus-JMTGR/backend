@@ -34,7 +34,7 @@ class ListUsersLikes(generics.ListCreateAPIView):
     serializer_class = UserLikesSerializer
 
 # User Select One - 회원 존재 유무 확인 , User Update - 회원 수정 / 로그인 시 기존회원인 경우 update
-@api_view(['GET','PUT'])
+@api_view(['GET','PUT', 'POST'])
 def UserOneAPI(request, email):
     try:
         queryset = User.objects.get(email=email)
@@ -75,23 +75,29 @@ def StudyPlanList(request):
 def CertificateLike(request, email, cert_id):
     user = User.objects.get(email=email)
     like_posts = user.cert_likes.filter(cert_id=cert_id)
-    serializer = UserLikesSerializer(user)
+    # serializer = UserLikesSerializer(user)
     if like_posts.exists():
         user.name = user.name
+        user.interest = user.interest
         user.email = user.email
         user.phone_number = user.phone_number
         user.cert_likes.remove(cert_id)
-        serializer = UserLikesSerializer(user)
         user.save()
+        serializer = UserLikesSerializer(data=user)
+        if serializer.is_valid():
+            serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     else:
         user.name = user.name
+        user.interest = user.interest
         user.email = user.email
         user.phone_number = user.phone_number
         user.cert_likes.add(*cert_id)
-        serializer = UserLikesSerializer(user)
         user.save()
-        return Response(serializer.data)
+        serializer = UserLikesSerializer(data=user)
+        if serializer.is_valid():
+            serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 

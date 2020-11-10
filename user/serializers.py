@@ -17,7 +17,7 @@ class UserLikesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email', 'interest', 'name', 'phone_number', 'cat_likes', 'cert_likes')
+        fields = ('email', 'name', 'interest', 'phone_number', 'cat_likes', 'cert_likes')
 
 # 스터디 플랜만
 class StudyPlanSerializer(serializers.ModelSerializer):
