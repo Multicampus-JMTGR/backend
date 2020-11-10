@@ -16,6 +16,9 @@ urlpatterns = [
     path('api/category/', views.ListCategories.as_view()),
     path('api/category/<int:pk>', views.DetailCategories.as_view()),
     
+    # Category + Cert Schedule
+    path('api/certificate/certschedule', views.ListCertCertSchedule.as_view()),
+
     # Certificates Filter - snchoi
     path('api/certificate/CertificatesFilter/', views.CertifiacetFilterSearchAPI),
 

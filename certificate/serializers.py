@@ -10,6 +10,11 @@ class CertNameCertScheduleSerializer(serializers.ModelSerializer):
         fields = ('cert_id', 'test_type', 'test_round', 'reg_start_date', 'reg_end_date', 'test_start_date', 'test_end_date', 'result_date_1', 'result_date_2', 'certificates_name',)
 
 
+# Category 기본정보
+class PureCategoryNameOnlySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ('name')
 
 # Category 기본정보
 class PureCategoryOnlySerializer(serializers.ModelSerializer):
