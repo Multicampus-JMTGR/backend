@@ -70,7 +70,7 @@ def CertifiacetFilterSearchAPI(request):
         return Response(serializer.data)
 
 @api_view(['GET'])
-def CertificateMontly(request, month):
+def CertificateMonthly(request, month):
     value = request.GET.get('month')
     queryset = CertSchedule.objects.filter(Q(reg_start_date__month=month)|Q(reg_end_date__month=month)|\
         Q(test_start_date__month=month)|Q(test_end_date__month=month)|Q(result_date_1__month=month)|Q(result_date_2__month=month))

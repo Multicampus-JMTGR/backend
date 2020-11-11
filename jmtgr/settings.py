@@ -103,7 +103,7 @@ DATABASES = {
 
     'default': {
      'ENGINE': 'django.db.backends.mysql',
-     'NAME': 'jmtgrdb',  # DB명
+     'NAME': 'jmtgrtest',  # DB명
      'USER': 'multicampusjmtgr',  # 데이터베이스 계정
      'PASSWORD': 'JMtgr1117',   # 계정 비밀번호
      'HOST': 'jmtgr.cij2xpo0vglc.us-east-1.rds.amazonaws.com',  # 데이테베이스 IP
