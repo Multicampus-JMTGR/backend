@@ -16,11 +16,17 @@ urlpatterns = [
     path('api/category/', views.ListCategories.as_view()),
     path('api/category/<int:pk>', views.DetailCategories.as_view()),
     
+    # Category + Cert Schedule
+    path('api/certificate/certschedule', views.ListCertCertSchedule.as_view()),
+
     # Certificates Filter - snchoi
     path('api/certificate/CertificatesFilter/', views.CertifiacetFilterSearchAPI),
 
     # Certificate Ordering Filter - snchoi
     path('api/certificate/OrderingFilter/', views.CertificateOrderingFilter.as_view()), #테스트중
+
+    # Certificate Ordering Filter - snchoi
+    path('api/certificatemonthly/<int:month>', views.CertificateMontly),
 
     # CertificateRecommand By 필기 Examinee - snchoi
     path('api/certificate/CertRecomByExaminee/', views.CertificateRecommendByExaminee.as_view()),
@@ -33,4 +39,5 @@ urlpatterns = [
 
     # CertificateRecommand By Interest & Random - 실기 - snchoi
     path('api/certificate/CertRecomByInterestSil/', views.CertificateRecommendByInterestSil),
+
 ]

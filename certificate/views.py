@@ -9,7 +9,7 @@ from django_filters.rest_framework import DjangoFilterBackend, FilterSet
 from django.db.models import Q
 from .models import Certificate, Category, CertSchedule
 from user.models import User
-from .serializers import CertificateSerializer, CategorySerializer, CertScheduleSerializer, CatCertSerializer, CertificateOnlySerializer, CertNameCertScheduleSerializer
+from .serializers import CertificateSerializer, CategorySerializer, CertScheduleSerializer, CatCertSerializer, CertificateOnlySerializer, CertNameCertScheduleSerializer, CertInfoCertScheduleSerializer
 from user.serializers import UserSerializer
 import random
 from datetime import datetime
@@ -39,6 +39,9 @@ class DetailCertificates(generics.RetrieveUpdateDestroyAPIView):
     queryset = Certificate.objects.all()
     serializer_class = CertificateOnlySerializer
 
+class ListCertCertSchedule(generics.ListAPIView):
+    queryset = Certificate.objects.all()
+    serializer_class = CertificateSerializer
 
 # Categories Viewset
 class ListCategories(generics.ListCreateAPIView):
@@ -66,6 +69,13 @@ def CertifiacetFilterSearchAPI(request):
             serializer = CatCertSerializer(queryset, many=True)
         return Response(serializer.data)
 
+@api_view(['GET'])
+def CertificateMontly(request, month):
+    value = request.GET.get('month')
+    queryset = CertSchedule.objects.filter(Q(reg_start_date__month=month)|Q(reg_end_date__month=month)|\
+        Q(test_start_date__month=month)|Q(test_end_date__month=month)|Q(result_date_1__month=month)|Q(result_date_2__month=month))
+    serializer = CertInfoCertScheduleSerializer(queryset, many=True)
+    return Response(serializer.data)
 
 
 # 추천 자격증 - 전체 자격증 중 "필기" 응시자 수 많은 순으로 8개 조회 - 수녕
