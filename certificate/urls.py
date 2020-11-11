@@ -26,7 +26,7 @@ urlpatterns = [
     path('api/certificate/OrderingFilter/', views.CertificateOrderingFilter.as_view()), #테스트중
 
     # Certificate Ordering Filter - snchoi
-    path('api/certificatemonthly/<int:month>', views.CertificateMontly),
+    path('api/certificatemonthly/<int:month>', views.CertificateMonthly),
 
     # CertificateRecommand By 필기 Examinee - snchoi
     path('api/certificate/CertRecomByExaminee/', views.CertificateRecommendByExaminee.as_view()),
