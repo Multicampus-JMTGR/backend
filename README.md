@@ -102,6 +102,15 @@
 
 
 
+## REST API Category Name - 수녕
+### GET api/basicCategory/
+- 카테고리 이름만 조회
+- 기능
+  - 로그인 시 관심 분야 선택하는 곳에서 사용
+- return: category[{}]
+
+
+
 ## REST API USER PART 
 
 ### GET /api/user
