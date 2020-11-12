@@ -1,13 +1,13 @@
 ## REST API - 수녕부분 
 
-### GET api/user/ALL
+### GET api/user
 
 - 모든 사용자 정보 목록을 가져옴
 - return: user[]
 
 
 
-### POST api/user/ALL
+### POST api/user
 
 - 사용자 정보 저장
 - body: {email: str(이메일-pk), interest: str(관심카테고리), name:str(사용자이름), phone_number: str(핸드폰번호)}
