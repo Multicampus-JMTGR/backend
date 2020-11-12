@@ -15,6 +15,7 @@ urlpatterns = [
     # Category
     path('api/category/', views.ListCategories.as_view()),
     path('api/category/<int:pk>', views.DetailCategories.as_view()),
+    path('api/basicCategory', views.PureCategories.as_view()), #기본 카테고리 정보
     
     # Category + Cert Schedule
     path('api/certificate/certschedule', views.ListCertCertSchedule.as_view()),

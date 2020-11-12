@@ -23,7 +23,7 @@ class CertInfoCertScheduleSerializer(serializers.ModelSerializer):
 class PureCategoryNameOnlySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ('name')
+        fields = ('name',)
 
 # Category 기본정보
 class PureCategoryOnlySerializer(serializers.ModelSerializer):

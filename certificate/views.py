@@ -9,7 +9,7 @@ from django_filters.rest_framework import DjangoFilterBackend, FilterSet
 from django.db.models import Q
 from .models import Certificate, Category, CertSchedule
 from user.models import User
-from .serializers import CertificateSerializer, CategorySerializer, CertScheduleSerializer, CatCertSerializer, CertificateOnlySerializer, CertNameCertScheduleSerializer, CertInfoCertScheduleSerializer
+from .serializers import CertificateSerializer, CategorySerializer, CertScheduleSerializer, CatCertSerializer, CertificateOnlySerializer, CertNameCertScheduleSerializer, CertInfoCertScheduleSerializer, PureCategoryNameOnlySerializer
 from user.serializers import UserSerializer
 import random
 from datetime import datetime
@@ -47,6 +47,11 @@ class ListCertCertSchedule(generics.ListAPIView):
 class ListCategories(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CatCertSerializer
+
+# 카테고리 기본정보
+class PureCategories(generics.ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = PureCategoryNameOnlySerializer
 
 
 class DetailCategories(generics.RetrieveUpdateDestroyAPIView):
