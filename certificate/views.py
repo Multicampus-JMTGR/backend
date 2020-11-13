@@ -35,7 +35,7 @@ class ListCertificates(generics.ListCreateAPIView):
     queryset = Certificate.objects.all()
     serializer_class = CertificateOnlySerializer
 
-class DetailCertificates(generics.RetrieveUpdateDestroyAPIView):
+class DetailCertificate(generics.RetrieveUpdateDestroyAPIView):
     queryset = Certificate.objects.all()
     serializer_class = CertificateOnlySerializer
 

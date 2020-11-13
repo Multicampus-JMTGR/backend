@@ -10,7 +10,7 @@ urlpatterns = [
     
     # Certificates
     path('api/certificate/', views.ListCertificates.as_view()),
-    path('api/certificate/<int:pk>', views.DetailCertificates.as_view()),
+    path('api/certificate/<int:pk>', views.DetailCertificate.as_view()),
 
     # Category
     path('api/category/', views.ListCategories.as_view()),
