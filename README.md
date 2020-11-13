@@ -2,6 +2,8 @@
 
 ### GET api/user
 
+- **Lambda**:  https://7oxpckq4u7.execute-api.us-east-1.amazonaws.com/jmtgr/api/user
+
 
 - 모든 사용자 정보 목록을 가져옴
 - return: user[]
@@ -16,6 +18,8 @@
 
 ### POST api/user
 
+- **Lambda**:  https://7oxpckq4u7.execute-api.us-east-1.amazonaws.com/jmtgr/api/user
+
 - **body**: {email: str(이메일-pk), interest: str(관심카테고리), name:str(사용자이름), phone_number: str(핸드폰번호)}
 - 사용자 정보 저장
 - return: HTTP_201_CREATED | HTTP_400_BAD_REQUEST
@@ -23,6 +27,8 @@
 
 
 ### GET api/user/\<str:email>
+
+- **Lambda**:  https://7oxpckq4u7.execute-api.us-east-1.amazonaws.com/jmtgr/api/user/{email}
 
 - 특정 사용자 정보 가져옴, 사용자 없으면 404 return
 - email : 로그인 사용자 email
@@ -33,6 +39,8 @@
 
 
 ### PUT api/user/\<str:email>
+
+- **Lambda**:  https://7oxpckq4u7.execute-api.us-east-1.amazonaws.com/jmtgr/api/user/{email}
 
 - **body**: {email: str(이메일-pk), interest: str(관심카테고리), name:str(사용자이름), phone_number: str(핸드폰번호)}
 - 특정 사용자 정보 수정
