@@ -93,7 +93,7 @@
 - **Lambda**: https://7oxpckq4u7.execute-api.us-east-1.amazonaws.com/jmtgr/api/certificate/{cert_id+}
 - 자격증 하나의 정보 조회
 - 스케쥴 정보는 표시 안됨
-- return: certificate[{}]
+- return: certificate{}
 
 
 
