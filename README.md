@@ -179,5 +179,33 @@
 
 
 
+-----------------------
+
+## 2020/11/15 => ToDoList 추가(GET, POST, DELETE)
+
+### GET api/user/todolist/{cert_id}/{email}
+
+- https://7oxpckq4u7.execute-api.us-east-1.amazonaws.com/jmtgr/api/user/todolist/{cert_id}/{email}
+- 기능 : 사용자가 좋아요 한 자격증에 해당하는 todolist 조회
+- 필요 값 : cert_id : 자격증 id(int) 값 / email : 사용자 이메일(str) 값
+
+
+
+### POST api/user/todolist
+
+- https://7oxpckq4u7.execute-api.us-east-1.amazonaws.com/jmtgr/api/user/todolist
+
+- 기능 : 사용자가 좋아요 한 자격증에 해당하는 todolist 작성
+
+- **body**: {contents: str(메모한 내용), cert_id: int(자격증 id), email :str(사용자 이메일)}
+
+  
+
+### DELETE api/user/todolist?content=값
+
+- https://7oxpckq4u7.execute-api.us-east-1.amazonaws.com/jmtgr/api/user/todolist
+- 기능 : 사용자가 좋아요 한 자격증에 해당하는 todolist중 특정 내용 삭제
+- **parameter** : {content : int(GET으로 조회시 넘겨주는 pk값이다.)}
+
 
 
