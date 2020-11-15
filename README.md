@@ -56,7 +56,7 @@
 
 - **Lambda**: https://7oxpckq4u7.execute-api.us-east-1.amazonaws.com/jmtgr/api/cert_like
 - **Request Body**: {email: 이메일, cert_id: (좋아요를 누른 자격증의 id)}
-- **Response Body**: 밑에 같은 형태로 그 유저가 좋아요한 모든 자격증 Response Body에 리턴하게 설정
+- **Response Body**: 다음과 같은 형태로 그 유저가 좋아요한 모든 자격증 Response Body에 리턴하게 설정 -->
 [{
     "id": 35,
     "user_id": "aaaa@naver.com",
