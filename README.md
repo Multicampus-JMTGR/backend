@@ -190,7 +190,7 @@
 
 ## 2020/11/15 => ToDoList 추가(GET, POST, DELETE)
 
-### GET api/user/todolist/{cert_id}/{email}
+### GET api/user/todolist/{email}
 
 - https://7oxpckq4u7.execute-api.us-east-1.amazonaws.com/jmtgr/api/user/todolist/{cert_id}/{email}
 - 기능 : 사용자가 좋아요 한 자격증에 해당하는 todolist 조회
