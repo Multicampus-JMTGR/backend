@@ -230,8 +230,7 @@
 
 - https://7oxpckq4u7.execute-api.us-east-1.amazonaws.com/jmtgr/api/mypage-certschedule/{cert_id}
 
-- 기능 : 사용자가 좋아요 한 자격증에 해당하는 todolist 작성
-
+- 기능 : 특정 자격증에 해당하는 자격증 스케줄 조회
 - 필요 값 : cert_id:  자격증 id (int) 값
 
 
