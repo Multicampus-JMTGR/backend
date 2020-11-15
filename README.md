@@ -216,3 +216,34 @@
 
 
 
+## 2020/11/15 => Cert_likes , Cert_schedule 수정및 추가
+
+### GET api/user/likes/{email}
+
+- https://7oxpckq4u7.execute-api.us-east-1.amazonaws.com/jmtgr/api/user/likes/{email}
+- 기능 : 사용자가 좋아요 한 자격증 정보 조회
+- 필요 값 : email : 사용자 이메일(str) 값
+
+
+
+### GET api/mypage-certschedule/{cert_id}
+
+- https://7oxpckq4u7.execute-api.us-east-1.amazonaws.com/jmtgr/api/mypage-certschedule/{cert_id}
+
+- 기능 : 사용자가 좋아요 한 자격증에 해당하는 todolist 작성
+
+- 필요 값 : cert_id:  자격증 id (int) 값
+
+
+
+
+### GET api/user/{email}
+
+- https://7oxpckq4u7.execute-api.us-east-1.amazonaws.com/jmtgr/api/user/{email}
+- 기능 : 사용자 정보만 조회
+- 필요 값 : email : 사용자 이메일(str) 값
+
+
+
+
+
