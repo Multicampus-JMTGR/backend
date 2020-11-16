@@ -1,6 +1,6 @@
 ## REST API - User
 
-### GET api/user
+### GET api/user 
 
 - **Lambda**:  https://7oxpckq4u7.execute-api.us-east-1.amazonaws.com/jmtgr/api/user
 
