@@ -1,3 +1,17 @@
+# JMTGR Overview
+A website for browsing and searching different certificates, creating your own study schedule and alarms for testing registrations.
+
+**Tech Stack**
+- Backend: Django REST Framework, Lambda
+- Fronend: React
+
+## TODO
+```python
+[] Finish README
+[] Reactivate database
+[] Automate web crawling process
+```
+
 ## REST API - User 
 
 ### GET api/user 
